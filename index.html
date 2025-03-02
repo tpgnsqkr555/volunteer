@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Impact Experience</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            transition: background 1s ease;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            color: white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            max-width: 28rem;
+            width: 100%;
+            margin: 0 auto;
+            transition: all 0.5s ease;
+        }
+
+        .card.animate {
+            transform: scale(1.05);
+            opacity: 0;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.875rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        p.large {
+            font-size: 1.25rem;
+        }
+
+        p.small {
+            font-size: 0.875rem;
+        }
+
+        p.xs {
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
+
+        p.italic {
+            font-style: italic;
+        }
+
+        .mb-2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .mb-3 {
+            margin-bottom: 0.75rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .mb-6 {
+            margin-bottom: 1.5rem;
+        }
+
+        .mb-8 {
+            margin-bottom: 2rem;
+        }
+
+        .mt-2 {
+            margin-top: 0.5rem;
+        }
+
+        .mt-4 {
+            margin-top: 1rem;
+        }
+
+        .mt-6 {
+            margin-top: 1.5rem;
+        }
+
+        .mt-8 {
+            margin-top: 2rem;
+        }
+
+        .my-6 {
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .w-full {
+            width: 100%;
+        }
+
+        .max-w-xs {
+            max-width: 20rem;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 0.25rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            margin-bottom: 1rem;
+        }
+
+        input[type="text"]::placeholder,
+        input[type="tel"]::placeholder,
+        input[type="email"]::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        input[type="text"]:focus,
+        input[type="tel"]:focus,
+        input[type="email"]:focus,
+        select:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+        }
+
+        input[type="checkbox"] {
+            margin-right: 0.5rem;
+            height: 1rem;
+            width: 1rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            font-size: 0.875rem;
+        }
+
+        button {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            background-color: #b91c1c;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #991b1b;
+        }
+
+        button:disabled {
+            background-color: #6b7280;
+            cursor: not-allowed;
+        }
+
+        .button-icon {
+            margin-left: 0.5rem;
+        }
+
+        .icon {
+            margin-bottom: 1rem;
+            color: #fca5a5;
+        }
+
+        .stat-number {
+            font-size: 3.75rem;
+            font-weight: bold;
+            margin: 1.5rem 0;
+        }
+
+        .image-container {
+            margin-bottom: 1.5rem;
+            width: 100%;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 12rem;
+            object-fit: cover;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .social-button {
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flex-space-x-4 {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .cta-button-primary {
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            background-color: white;
+            color: #7f1d1d;
+            font-weight: bold;
+            border: none;
+        }
+
+        .cta-button-primary:hover {
+            background-color: #f3f4f6;
+        }
+
+        .cta-button-secondary {
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            background-color: #991b1b;
+            color: white;
+            border: 1px solid white;
+        }
+
+        .cta-button-secondary:hover {
+            background-color: #7f1d1d;
+        }
+
+        .personalize-section {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            width: 100%;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            opacity: 0.7;
+            margin-bottom: 0.5rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Stage-specific gradients */
+        .gradient-intro {
+            background: linear-gradient(to bottom right, #7f1d1d, #450a0a);
+        }
+
+        .gradient-welcome {
+            background: linear-gradient(to bottom right, #991b1b, #450a0a);
+        }
+
+        .gradient-map-impact {
+            background: linear-gradient(to bottom right, #b91c1c, #7f1d1d);
+        }
+
+        .gradient-lives-changed {
+            background: linear-gradient(to bottom right, #991b1b, #450a0a);
+        }
+
+        .gradient-global-reach {
+            background: linear-gradient(to bottom right, #7f1d1d, #450a0a);
+        }
+
+        .gradient-team-position {
+            background: linear-gradient(to bottom right, #991b1b, #7f1d1d);
+        }
+
+        .gradient-share {
+            background: linear-gradient(to bottom right, #7f1d1d, #450a0a);
+        }
+    </style>
+</head>
+<body class="gradient-intro">
+    <div class="card" id="card">
+        <!-- Content will be dynamically inserted here based on stage -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // State
+            let state = {
+                stage: 'intro',
+                name: '',
+                phone: '',
+                email: '',
+                contactConsent: false,
+                showNameField: true,
+                animate: false,
+                reminderFrequency: 'monthly',
+                storyPreference: 'all',
+                stats: {
+                    mapsReviewed: 347,
+                    livesImpacted: 24680,
+                    communitiesServed: 18,
+                    disastersSupported: 3,
+                    countriesImpacted: 7,
+                    teamRank: 3,
+                    topRegion: 'East Africa',
+                    collaborators: 42
+                }
+            };
+
+            // Photo placeholders - in a real implementation, these would be actual volunteer/mapping photos
+            const photos = {
+                welcome: "/api/placeholder/400/300",
+                mapImpact: "/api/placeholder/400/300",
+                livesChanged: "/api/placeholder/400/300",
+                globalReach: "/api/placeholder/400/300",
+                teamPosition: "/api/placeholder/400/300"
+            };
+            
+            // SVG icons
+            const icons = {
+                chevronRight: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>',
+                map: '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon><line x1="9" y1="3" x2="9" y2="18"></line><line x1="15" y1="6" x2="15" y2="21"></line></svg>',
+                heart: '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>',
+                globe: '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>',
+                users: '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>'
+            };
+
+            // Handle stage transitions
+            function handleNext() {
+                if (state.stage === 'intro' && (state.name.trim() === '' || state.phone.trim() === '' || !state.contactConsent)) {
+                    return; // Require name, phone, and consent before proceeding
+                }
+                
+                // Trigger animation
+                animateTransition();
+                
+                setTimeout(() => {
+                    if (state.stage === 'intro') {
+                        state.showNameField = false;
+                        state.stage = 'welcome';
+                    } else if (state.stage === 'welcome') {
+                        state.stage = 'map-impact';
+                    } else if (state.stage === 'map-impact') {
+                        state.stage = 'lives-changed';
+                    } else if (state.stage === 'lives-changed') {
+                        state.stage = 'global-reach';
+                    } else if (state.stage === 'global-reach') {
+                        state.stage = 'team-position';
+                    } else if (state.stage === 'team-position') {
+                        state.stage = 'share';
+                    } else if (state.stage === 'share') {
+                        state.stage = 'intro';
+                        state.name = '';
+                        state.showNameField = true;
+                    }
+                    
+                    updateGradient();
+                    renderContent();
+                }, 500);
+            }
+            
+            // Animate transition between stages
+            function animateTransition() {
+                const card = document.getElementById('card');
+                card.classList.add('animate');
+                
+                setTimeout(() => {
+                    card.classList.remove('animate');
+                }, 500);
+            }
+            
+            // Update background gradient based on stage
+            function updateGradient() {
+                document.body.className = '';
+                document.body.classList.add(`gradient-${state.stage}`);
+            }
+            
+            // Handle social sharing (mock implementation)
+            function handleShare(platform) {
+                alert(`Sharing to ${platform} - In a full implementation, this would open the ${platform} sharing dialog`);
+            }
+            
+            // Initialize the application
+            function initialize() {
+                updateGradient();
+                renderContent();
+            }
+            
+            // Start the application
+            initialize();
+            
+            // Render content based on current stage
+            function renderContent() {
+                const card = document.getElementById('card');
+                let content = '';
+                
+                // Stage-specific content
+                if (state.stage === 'intro') {
+                    content = `
+                        <h1>Your Year of Saving Lives</h1>
+                        <p class="large">For 365 days, your fingers traced paths that guided rescuers to those who needed them most</p>
+                        <p class="italic mb-8">We've been waiting all year to show you the difference you've made</p>
+                        
+                        ${state.showNameField ? `
+                            <div class="w-full mb-8">
+                                <div class="mb-4">
+                                    <label for="name">Enter your name</label>
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        value="${state.name}"
+                                        placeholder="Your name"
+                                    />
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="phone">Your phone number (for impact updates)</label>
+                                    <input
+                                        type="tel"
+                                        id="phone"
+                                        value="${state.phone}"
+                                        placeholder="+1 (555) 555-5555"
+                                    />
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="email">Your email (optional)</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        value="${state.email}"
+                                        placeholder="you@example.com"
+                                    />
+                                </div>
+                                
+                                <div class="checkbox-label mb-4">
+                                    <input
+                                        type="checkbox"
+                                        id="contactConsent"
+                                        ${state.contactConsent ? 'checked' : ''}
+                                    />
+                                    <label for="contactConsent">
+                                        I consent to receive personalized impact stories and reminders about volunteer opportunities
+                                    </label>
+                                </div>
+                            </div>
+                        ` : ''}
+                        
+                        <button 
+                            id="nextButton"
+                            ${(state.name.trim() === '' || state.phone.trim() === '' || !state.contactConsent) && state.showNameField ? 'disabled' : ''}
+                            class="mt-4"
+                        >
+                            Begin Your Journey <span class="button-icon">${icons.chevronRight}</span>
+                        </button>
+                    `;
+                } else if (state.stage === 'welcome') {
+                    content = `
+                        <div class="image-container">
+                            <img 
+                                src="${photos.welcome}" 
+                                alt="Volunteers working on crisis mapping"
+                            />
+                        </div>
+                        <h2>Thank You, ${state.name}</h2>
+                        <p class="large mb-4">From all of us at Volunteer Cloud and the countless lives you've touched this year</p>
+                        <p class="italic mb-8">"When the floods came, I didn't know if help would reach us. Because of you, it did."</p>
+                        <button id="nextButton" class="mt-4">
+                            Continue <span class="button-icon">${icons.chevronRight}</span>
+                        </button>
+                        
+                        <div class="footer">
+                            <div class="footer-content">
+                                <div>Volunteer Cloud Impact 2024</div>
+                                <div>Maps that Matter. Lives that Change.</div>
+                            </div>
+                            <div class="text-center xs italic mt-2">
+                                "One year of your life. A lifetime of difference for others."
+                            </div>
+                        </div>
+                    `;
+                } else if (state.stage === 'map-impact') {
+                    content = `
+                        <div class="image-container">
+                            <img 
+                                src="${photos.mapImpact}" 
+                                alt="Digital maps being used in crisis response"
+                            />
+                        </div>
+                        <div class="icon">${icons.map}</div>
+                        <h2>Your Mapping Power</h2>
+                        <div class="stat-number">${state.stats.mapsReviewed}</div>
+                        <p class="large mb-2">Areas Mapped</p>
+                        <p class="mb-4">Each map you've created is a promise kept to someone waiting for help</p>
+                        <p class="italic mb-8">"Your late nights mapping became their first moments of hope"</p>
+                        <button id="nextButton" class="mt-4">
+                            Next <span class="button-icon">${icons.chevronRight}</span>
+                        </button>
+                        
+                        <div class="footer">
+                            <div class="footer-content">
+                                <div>Volunteer Cloud Impact 2024</div>
+                                <div>Maps that Matter. Lives that Change.</div>
+                            </div>
+                            <div class="text-center xs italic mt-2">
+                                "Your personal impact, ${state.name}. This is what heroism looks like."
+                            </div>
+                        </div>
+                    `;
+                } else if (state.stage === 'lives-changed') {
+                    content = `
+                        <div class="image-container">
+                            <img 
+                                src="${photos.livesChanged}" 
+                                alt="Community members receiving aid"
+                            />
+                        </div>
+                        <div class="icon">${icons.heart}</div>
+                        <h2>Lives Changed</h2>
+                        <div class="stat-number">${state.stats.livesImpacted.toLocaleString()}</div>
+                        <p class="large mb-2">People Impacted</p>
+                        <p class="mb-3">"Thanks to volunteers like you, our rescue team reached my family after the flood." — Maria, Survivor</p>
+                        <p class="italic mb-2">"Your maps guided me to safety when I had lost all hope." — Carlos, Father of three</p>
+                        <p class="italic mb-8">"We named our newborn daughter after the volunteer mapper who helped save us." — Aisha, New mother</p>
+                        <button id="nextButton" class="mt-4">
+                            Next <span class="button-icon">${icons.chevronRight}</span>
+                        </button>
+                        
+                        <div class="footer">
+                            <div class="footer-content">
+                                <div>Volunteer Cloud Impact 2024</div>
+                                <div>Maps that Matter. Lives that Change.</div>
+                            </div>
+                            <div class="text-center xs italic mt-2">
+                                "Behind every number is a beating heart you helped save."
+                            </div>
+                        </div>
+                    `;
+                } else if (state.stage === 'global-reach') {
+                    content = `
+                        <div class="image-container">
+                            <img 
+                                src="${photos.globalReach}" 
+                                alt="Global map showing impact regions"
+                            />
+                        </div>
+                        <div class="icon">${icons.globe}</div>
+                        <h2>Your Global Impact</h2>
+                        <div class="my-6 text-center">
+                            <div style="font-size: 3rem; font-weight: bold;" class="mb-2">${state.stats.countriesImpacted}</div>
+                            <p class="large mb-4">Countries</p>
+                            <div style="font-size: 3rem; font-weight: bold;" class="mb-2">${state.stats.communitiesServed}</div>
+                            <p class="large mb-4">Communities</p>
+                            <div style="font-size: 2.5rem; font-weight: bold;" class="mb-2">${state.stats.disastersSupported}</div>
+                            <p class="large">Crises Supported</p>
+                        </div>
+                        <button id="nextButton" class="mt-8">
+                            Next <span class="button-icon">${icons.chevronRight}</span>
+                        </button>
+                        
+                        <div class="footer">
+                            <div class="footer-content">
+                                <div>Volunteer Cloud Impact 2024</div>
+                                <div>Maps that Matter. Lives that Change.</div>
+                            </div>
+                            <div class="text-center xs italic mt-2">
+                                "Your impact knows no borders. Neither does our gratitude."
+                            </div>
+                        </div>
+                    `;
+                } else if (state.stage === 'team-position') {
+                    content = `
+                        <div class="image-container">
+                            <img 
+                                src="${photos.teamPosition}" 
+                                alt="Volunteer mapping team working together"
+                            />
+                        </div>
+                        <div class="icon">${icons.users}</div>
+                        <h2>Collective Impact</h2>
+                        <div class="text-center my-6">
+                            <div style="font-size: 2.5rem; font-weight: bold;" class="mb-2">Top 3%</div>
+                            <p class="large mb-4">Of Volunteer Cloud contributors</p>
+                            <div style="font-size: 2.5rem; font-weight: bold;" class="mb-2">${state.stats.collaborators}</div>
+                            <p class="large mb-4">Fellow heroes mapping alongside you</p>
+                            <p class="italic">"Your dedication inspires our entire community. We couldn't do this without you, ${state.name}."</p>
+                        </div>
+                        <button id="nextButton" class="mt-8">
+                            Next <span class="button-icon">${icons.chevronRight}</span>
+                        </button>
+                        
+                        <div class="footer">
+                            <div class="footer-content">
+                                <div>Volunteer Cloud Impact 2024</div>
+                                <div>Maps that Matter. Lives that Change.</div>
+                            </div>
+                            <div class="text-center xs italic mt-2">
+                                "Together we map. Together we save. Together we change the world."
+                            </div>
+                        </div>
+                    `;
+                } else if (state.stage === 'share') {
+                    content = `
+                        <h2>Share Your Impact</h2>
+                        <p class="large mb-4">Inspire others to join your mission</p>
+                        <p class="italic mb-8">"Show the world that heroes don't always wear capes—sometimes they just trace maps"</p>
+                        
+                        <div class="grid-2 max-w-xs">
+                            <button class="social-button" id="twitterShare">Twitter</button>
+                            <button class="social-button" id="facebookShare">Facebook</button>
+                            <button class="social-button" id="linkedinShare">LinkedIn</button>
+                            <button class="social-button" id="instagramShare">Instagram</button>
+                        </div>
+                        
+                        <div class="mt-8 text-center">
+                            <p class="mb-2">"Every map you create is a lifeline for someone in need."</p>
+                            <p class="font-bold mb-6">We need you again next year. Will you join us?</p>
+                            
+                            <div class="flex-space-x-4 mb-4">
+                                <button class="cta-button-primary">YES, I'M IN</button>
+                                <button class="cta-button-secondary">Remind Me Later</button>
+                            </div>
+                            
+                            <div class="personalize-section">
+                                <h3>Personalize Your Engagement</h3>
+                                
+                                <div class="mb-4">
+                                    <label for="reminderFrequency">How often would you like to receive updates?</label>
+                                    <select id="reminderFrequency">
+                                        <option value="weekly">Weekly</option>
+                                        <option value="monthly" selected>Monthly</option>
+                                        <option value="quarterly">Quarterly</option>
+                                        <option value="urgent-only">Only during urgent crises</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="storyPreference">What kind of impact stories would you like to receive?</label>
+                                    <select id="storyPreference">
+                                        <option value="all" selected>All impact stories</option>
+                                        <option value="personal">Personal testimonials from those you've helped</option>
+                                        <option value="urgent">Urgent mapping needs in crisis areas</option>
+                                        <option value="team">Team achievements and milestones</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="text-xs mt-2" style="opacity: 0.7;">
+                                    We'll send personalized messages to ${state.phone || "your phone"} based on your mapping activity and preferences
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button id="nextButton" class="mt-4">
+                            Start Over <span class="button-icon">${icons.chevronRight}</span>
+                        </button>
+                        
+                        <div class="footer">
+                            <div class="footer-content">
+                                <div>Volunteer Cloud Impact 2024</div>
+                                <div>Maps that Matter. Lives that Change.</div>
+                            </div>
+                            <div class="text-center xs italic mt-2">
+                                "Thank you for a year of heroism, ${state.name}. We can't wait to see what you do next."
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                card.innerHTML = content;
+                
+                // Add event listeners after content is rendered
+                attachEventListeners();
+            }
+            
+            // Update next button disabled state based on form validation
+            function updateNextButtonState() {
+                const nextButton = document.getElementById('nextButton');
+                if (nextButton && state.stage === 'intro' && state.showNameField) {
+                    nextButton.disabled = (state.name.trim() === '' || state.phone.trim() === '' || !state.contactConsent);
+                }
+            }
+            
+            // Attach event listeners to interactive elements
+            function attachEventListeners() {
+                const nextButton = document.getElementById('nextButton');
+                if (nextButton) {
+                    nextButton.addEventListener('click', handleNext);
+                }
+                
+                // Form elements for intro stage
+                if (state.stage === 'intro' && state.showNameField) {
+                    const nameInput = document.getElementById('name');
+                    const phoneInput = document.getElementById('phone');
+                    const emailInput = document.getElementById('email');
+                    const consentCheckbox = document.getElementById('contactConsent');
+                    
+                    nameInput.addEventListener('input', function(e) {
+                        state.name = e.target.value;
+                        updateNextButtonState();
+                    });
+                    
+                    phoneInput.addEventListener('input', function(e) {
+                        state.phone = e.target.value;
+                        updateNextButtonState();
+                    });
+                    
+                    emailInput.addEventListener('input', function(e) {
+                        state.email = e.target.value;
+                    });
+                    
+                    consentCheckbox.addEventListener('change', function(e) {
+                        state.contactConsent = e.target.checked;
+                        updateNextButtonState();
+                    });
+                }
+                
+                // Social share buttons
+                if (state.stage === 'share') {
+                    document.getElementById('twitterShare').addEventListener('click', function() {
+                        handleShare('Twitter');
+                    });
+                    
+                    document.getElementById('facebookShare').addEventListener('click', function() {
+                        handleShare('Facebook');
+                    });
+                    
+                    document.getElementById('linkedinShare').addEventListener('click', function() {
+                        handleShare('LinkedIn');
+                    });
+                    
+                    document.getElementById('instagramShare').addEventListener('click', function() {
+                        handleShare('Instagram');
+                    });
+                    
+                    const reminderFrequencySelect = document.getElementById('reminderFrequency');
+                    reminderFrequencySelect.addEventListener('change', function(e) {
+                        state.reminderFrequency = e.target.value;
+                    });
+                    
+                    const storyPreferenceSelect = document.getElementById('storyPreference');
+                    storyPreferenceSelect.addEventListener('change', function(e) {
+                        state.storyPreference = e.target.value;
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
